@@ -82,6 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <input type="submit" value="Register"/>
             <input type="submit" name="back" value="Back"/>
         </form>
-        <img src="images/pain.jpg" width=800px height=400px title="tone it up" alt="message saying no pain no gain" />
+        <img src="images/pain.jpg" width=550px height=387px title="tone it up" alt="message saying no pain no gain" />
     </body>
 </html>
