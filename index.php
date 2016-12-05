@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
             ?>
             <input type="submit" value="Edit My workouts">
-            <br>Don't have a workout list? <a href="createNewAthlete.php">Create one now!</a>
+            <br>Not a member? <a href="createNewAthlete.php">Create an account!</a>
         </form>
     </body>
 </html>

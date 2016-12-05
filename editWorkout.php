@@ -44,9 +44,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if ($workoutDescriptionIsEmpty)
                 echo "Please enter workout<br/>";
             ?>
-            How long did you workout for? <input type="text" name="workoutTime" value="<?php echo $workout['workout_time']; ?>"/><br/>
+            When was your workout? <input type="text" name="workoutTime" value="<?php echo $workout['workout_time']; ?>"/><br/>
             <input type="submit" name="saveWorkout" value="Save Changes"/>
             <input type="submit" name="back" value="Back to the Workout List"/>
         </form>
+        <img src="images/running.png" width="200px" height="200px" title="running" alt="image of someone running"/>
+        <img src="images/swimming.png" width="200px" height="200px" title="swimming" alt="image of someone swimming"/>
+        <img src="images/tennis.svg" width="200px" height="200px" title="tennis" alt="image of a tennis logo"/>
+        <img src="images/hiking.jpg" width="200px" height="200px" title="hiking" alt="image of someone hiking"/>
     </body>
 </html>

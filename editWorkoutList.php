@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (array_key_exists("user", $_SESSION)) {
-    echo "Hello " . $_SESSION['user'];
+    echo "Hello " . $_SESSION['user'] . "!" . "\r\n" . "Here is your workout list:";
 } else {
     header('Location: index.php');
     exit;
@@ -34,5 +34,6 @@ if (array_key_exists("user", $_SESSION)) {
         <form name="backToMainPage" action="index.php">
             <input type="submit" value="Back To Main Page"/>
         </form>
+            <img src="images/tone_it_up.png" width=512px height=213 title="tone it up" alt="message saying tone it up" />
     </body>
 </html>
