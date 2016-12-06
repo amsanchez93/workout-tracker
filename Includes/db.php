@@ -52,7 +52,7 @@ class workoutDB {
     }
 
     public function get_workouts_by_athlete_id($athleteID) {
-        $query = "SELECT id, description, workout_time FROM workouts WHERE athlete_id = :id_bv";
+        $query = "SELECT id, description, workout_time, weight FROM workouts WHERE athlete_id = :id_bv";
         $stid = oci_parse($this->con, $query);
         oci_bind_by_name($stid, ":id_bv", $athleteID);
         oci_execute($stid);

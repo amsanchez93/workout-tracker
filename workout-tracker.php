@@ -26,13 +26,14 @@ and open the template in the editor.
             <tr>
                 <th>Workout</th>
                 <th>Date</th>
-                <!-- <th>Weight</th> -->
+                <th>Weight</th> 
             </tr>
             <?php
             $stid = workoutDB::getInstance()->get_workouts_by_athlete_id($athleteID);  
             while ($row = oci_fetch_array($stid)) {
                 echo "<tr><td>" . htmlentities($row["DESCRIPTION"]) . "</td>";
-                echo "<td>" . htmlentities($row["WORKOUT_TIME"]) . "</td></tr>\n";
+                echo "<td>" . htmlentities($row["WORKOUT_TIME"]) . "</td>";
+                echo "<td>" . htmlentities($row["WEIGHT"]) . "</td></tr>\n";
             }
             oci_free_statement($stid);
             ?>
