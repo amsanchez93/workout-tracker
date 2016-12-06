@@ -74,7 +74,6 @@ class workoutDB {
         oci_bind_by_name($stid, ':pwd_bv', $password);
         oci_execute($stid);
 
-//Because name is a unique value I only expect one row
         $row = oci_fetch_array($stid, OCI_ASSOC);
         if ($row)
             return true;
@@ -82,13 +81,13 @@ class workoutDB {
             return false;
     }
 
-    function insert_workout($athleteID, $description, $workouttime /*$Weight*/) {
-        $query = "INSERT INTO workouts (athlete_id, description, workout_time) VALUES (:athlete_id_bv, :desc_bv, to_date(:workout_time_bv, 'YYYY-MM-DD'))";
+    function insert_workout($athleteID, $description, $weight, $workouttime) {
+        $query = "INSERT INTO workouts (athlete_id, description, weight, workout_time) VALUES (:athlete_id_bv, :desc_bv, :wgt_bv, to_date(:workout_time_bv, 'YYYY-MM-DD'))";
         $stid = oci_parse($this->con, $query);
         oci_bind_by_name($stid, ':athlete_id_bv', $athleteID);
         oci_bind_by_name($stid, ':desc_bv', $description);
+        oci_bind_by_name($stid, ':wgt_bv', $weight);
         oci_bind_by_name($stid, ':workout_time_bv', $this->format_date_for_sql($workouttime));
-        //oci_bind_by_name($stid, ':weight_bv', $Weight);
         oci_execute($stid);
         oci_free_statement($stid);
     }
