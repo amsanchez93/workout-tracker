@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (array_key_exists("user", $_SESSION)) {
-    echo "Hello " . $_SESSION['user'] . "!" . "\r\n" . "Here is your workout list:";
+    echo "Hello " . $_SESSION['user'] . "!" . "<br>" . "Here is your workout list:";
 } else {
     header('Location: index.php');
     exit;
@@ -14,8 +14,7 @@ if (array_key_exists("user", $_SESSION)) {
     </head>
     <body>
         <table border="black">
-       <table border="black">
-    <tr><th>Item</th><th>Workout Time</th></tr>
+    <tr><th>Workout</th><th>Workout Date</th></tr>
     <?php
     require_once("Includes/db.php");
     $athleteID = WorkoutDB::getInstance()->get_athlete_id_by_name($_SESSION["user"]);

@@ -29,13 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <img src="images/runner.jpg" title="runner picture" alt="Picture of a Runner" />
         <h1>Workout Tracker!</h1>
         <h2>Please log in</h2>
-        <!-- <form name="workout-tracker" method="GET" action="workout-tracker.php">
+         <form name="workout-tracker" method="GET" action="workout-tracker.php">
             Show workout list of: <input type="text" name="user" value="" />
             <input type="submit" value="Go" /> 
-        </form> -->
+        </form> 
         <form name="logon" action="index.php" method="POST" >
             Username: <input type="text" name="user">
-            Password  <input type="password" name="userpassword">
+            Password:  <input type="password" name="userpassword">
             <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (!$logonSuccess)

@@ -14,24 +14,25 @@ and open the template in the editor.
     <body>
         <div><a href="editWorkoutList.php">Add New workout</a></div>
         <div><a href="index.php">Return</a></div>
-        workout List of <?php echo htmlentities($_GET["user"]) . "<br/>"; ?> 
+        Here is <?php echo htmlentities($_GET["user"]); ?>'s workout list. 
         <?php
         require_once("Includes/db.php");
         $athleteID = workoutDB::getInstance()->get_athlete_id_by_name($_GET["user"]);
-        if (!athlete_ID) {
+        if (!$athleteID) {
             exit("The person " . $_GET["user"] . " is not found. Please check the spelling and try again");
         }
         ?>
         <table border="black">
             <tr>
-                <th>workout</th>
-                <th>Time</th>
+                <th>Workout</th>
+                <th>Date</th>
+                <!-- <th>Weight</th> -->
             </tr>
             <?php
-            $stid = workoutDB::getInstance()->get_workouts_by_athlete_id(athlete_ID);  
+            $stid = workoutDB::getInstance()->get_workouts_by_athlete_id($athleteID);  
             while ($row = oci_fetch_array($stid)) {
                 echo "<tr><td>" . htmlentities($row["DESCRIPTION"]) . "</td>";
-                echo "<td>" . htmlentities($row["workout_date"]) . "</td></tr>\n";
+                echo "<td>" . htmlentities($row["WORKOUT_TIME"]) . "</td></tr>\n";
             }
             oci_free_statement($stid);
             ?>
