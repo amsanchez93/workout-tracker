@@ -41,7 +41,7 @@ class workoutDB {
     public function get_athlete_id_by_name($name) {
         $query = "SELECT ID FROM athletes WHERE name = :user_bv";
         $stid = oci_parse($this->con, $query);
-        
+
         oci_bind_by_name($stid, ':user_bv', $name);
         oci_execute($stid);
         $row = oci_fetch_array($stid, OCI_ASSOC);
@@ -81,26 +81,44 @@ class workoutDB {
             return false;
     }
 
-    function insert_workout($athleteID, $description, $weight, $workouttime) {
-        $query = "INSERT INTO workouts (athlete_id, description, weight, workout_time) VALUES (:athlete_id_bv, :desc_bv, :wgt_bv, to_date(:workout_time_bv, 'YYYY-MM-DD'))";
+    public function get_smallest_weight_by_athlete_id($athleteID) {
+        $query = "SELECT MIN(weight) AS tiny FROM workouts WHERE athlete_id = :id_bv";
         $stid = oci_parse($this->con, $query);
-        oci_bind_by_name($stid, ':athlete_id_bv', $athleteID);
-        oci_bind_by_name($stid, ':desc_bv', $description);
-        oci_bind_by_name($stid, ':wgt_bv', $weight);
-        oci_bind_by_name($stid, ':workout_time_bv', $this->format_date_for_sql($workouttime));
+        oci_bind_by_name($stid, ":id_bv", $athleteID);
         oci_execute($stid);
-        oci_free_statement($stid);
+        return $stid;
     }
+    
+    public function get_largest_weight_by_athlete_id($athleteID) {
+        $query = "SELECT MAX(weight) AS large FROM workouts WHERE athlete_id = :id_bv";
+        $stid = oci_parse($this->con, $query);
+        oci_bind_by_name($stid, ":id_bv", $athleteID);
+        oci_execute($stid);
+        return $stid;
+    }
+    
+    //public function get_weight_difference()
 
-    function format_date_for_sql($date) {
-        if ($date == "")
-            return null;
-        else {
-            $dateParts = date_parse($date);
-            return $dateParts['year'] * 10000 + '-' + $dateParts['month'] * 100 + '-' + $dateParts['day'];
+        function insert_workout($athleteID, $description, $weight, $workouttime) {
+            $query = "INSERT INTO workouts (athlete_id, description, weight, workout_time) VALUES (:athlete_id_bv, :desc_bv, :wgt_bv, to_date(:workout_time_bv, 'YYYY-MM-DD'))";
+            $stid = oci_parse($this->con, $query);
+            oci_bind_by_name($stid, ':athlete_id_bv', $athleteID);
+            oci_bind_by_name($stid, ':desc_bv', $description);
+            oci_bind_by_name($stid, ':wgt_bv', $weight);
+            oci_bind_by_name($stid, ':workout_time_bv', $this->format_date_for_sql($workouttime));
+            oci_execute($stid);
+            oci_free_statement($stid);
         }
-    }
 
-}
+        function format_date_for_sql($date) {
+            if ($date == "")
+                return null;
+            else {
+                $dateParts = date_parse($date);
+                return $dateParts['year'] * 10000 + '-' + $dateParts['month'] * 100 + '-' + $dateParts['day'];
+            }
+        }
+
+    }
 
 ?>
