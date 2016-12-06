@@ -14,7 +14,7 @@ if (array_key_exists("user", $_SESSION)) {
     </head>
     <body>
         <table border="black">
-    <tr><th>Workout</th><th>Workout Date</th></tr>
+            <tr><th>Workout</th><th>Workout Date</th><th>Weight</th></tr>
     <?php
     require_once("Includes/db.php");
     $athleteID = WorkoutDB::getInstance()->get_athlete_id_by_name($_SESSION["user"]);
@@ -22,7 +22,8 @@ if (array_key_exists("user", $_SESSION)) {
     while ($row = oci_fetch_array($stid)) {
         echo "<tr><td>" . htmlentities($row['DESCRIPTION']) . "</td>";
 
-        echo "<td>" . htmlentities($row['WORKOUT_TIME']) . "</td></tr>\n";
+        echo "<td>" . htmlentities($row['WORKOUT_TIME']) . "</td>";
+        echo "<td>" . htmlentities($row["WEIGHT"]) . "</td></tr>\n";
     }
     ?>
 </table>
