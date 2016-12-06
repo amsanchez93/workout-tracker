@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 "weight" => "",
                 "workout_time" => "")
         ?>
-        <form name="editWorkout" action="editWorkout.php" method="POST">
+        <form name="editWorkout" action="editWorkout.php" method="POST" align="center">
             Your Workout: <input type="text" name="workout"  value="<?php echo $workout['description']; ?>" /><br/>
             <?php
             if ($workoutDescriptionIsEmpty)
@@ -51,10 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <input type="submit" name="saveWorkout" value="Save Changes"/>
             <input type="submit" name="back" value="Back to the Workout List"/>
         </form>
-        <img src="images/running.png" width="200px" height="200px" title="running" alt="image of someone running"/>
-        <img src="images/swimming.png" width="200px" height="200px" title="swimming" alt="image of someone swimming"/>
-        <img src="images/tennis.svg" width="200px" height="200px" title="tennis" alt="image of a tennis logo"/>
-        <img src="images/hiking.jpg" width="200px" height="200px" title="hiking" alt="image of someone hiking"/>
-
+        <p style="text-align:center;">
+        <img src="images/dogs.gif" title="running" alt="gif of dog running" align="center"/>
+    </p>
     </body>
 </html>

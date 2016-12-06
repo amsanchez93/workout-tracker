@@ -48,7 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <title></title>
     </head>
     <body>
-        Welcome!<br>
+        <div style="text-align:center;">
+            <h1>Welcome!</h1>
+            <img src="images/pain.jpg" width=700px height=387px title="tone it up" alt="message saying no pain no gain"/>
+            <br />
+            <br />
         <form action="createNewAthlete.php" method="POST">
             Your name: <input type="text" name="user"/><br/>
             <?php
@@ -61,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 echo ("<br/>");
             }
             ?> 
+            <br />
             Password: <input type="password" name="password"/><br/>
             <?php
             if ($passwordIsEmpty) {
@@ -68,7 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 echo ("<br/>");
             }
             ?>
-            Confirm password: <input type="password" name="password2"/><br/>
+            <br />
+            Confirm: <input type="password" name="password2"/><br/>
             <?php
             if ($password2IsEmpty) {
                 echo ("Confirm your password, please");
@@ -79,9 +85,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 echo ("<br/>");
             }
             ?>
+            <br />
             <input type="submit" value="Register"/>
             <input type="submit" name="back" value="Back"/>
         </form>
-        <img src="images/pain.jpg" width=550px height=387px title="tone it up" alt="message saying no pain no gain" />
     </body>
 </html>

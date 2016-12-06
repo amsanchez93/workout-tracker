@@ -12,9 +12,12 @@ and open the template in the editor.
         <title>workout tracker</title>
     </head>
     <body>
+        <div style="text-align:center;">
         <div><a href="editWorkoutList.php">Add New workout</a></div>
         <div><a href="index.php">Return</a></div>
-        Here is <?php echo htmlentities($_GET["user"]); ?>'s workout list. 
+        <br />
+        Here is <?php echo htmlentities($_GET["user"]); ?>'s workout list.
+        <br />
         <?php
         require_once("Includes/db.php");
         $athleteID = workoutDB::getInstance()->get_athlete_id_by_name($_GET["user"]);
@@ -22,14 +25,14 @@ and open the template in the editor.
             exit("The person " . $_GET["user"] . " is not found. Please check the spelling and try again");
         }
         ?>
-        <table border="black">
+        <table border="black" align="center">
             <tr>
                 <th>Workout</th>
                 <th>Date</th>
                 <th>Weight</th> 
             </tr>
             <?php
-            $stid = workoutDB::getInstance()->get_workouts_by_athlete_id($athleteID);  
+            $stid = workoutDB::getInstance()->get_workouts_by_athlete_id($athleteID);
             while ($row = oci_fetch_array($stid)) {
                 echo "<tr><td>" . htmlentities($row["DESCRIPTION"]) . "</td>";
                 echo "<td>" . htmlentities($row["WORKOUT_TIME"]) . "</td>";
@@ -38,5 +41,37 @@ and open the template in the editor.
             oci_free_statement($stid);
             ?>
         </table> 
+        <br />
+        <div>
+            <table border="black" align="center">
+                <tr>
+                    <th>Lightest Weight</th> 
+                </tr>
+                <?php
+                $stid = workoutDB::getInstance()->get_smallest_weight_by_athlete_id($athleteID);
+                while ($row = oci_fetch_array($stid)) {
+                    echo "<tr><td>" . htmlentities($row["TINY"]) . "</td></tr>\n";
+                }
+                oci_free_statement($stid);
+                ?>
+            </table>
+        </div>
+        <br />
+        <div>
+            <table border="black" align="center">
+                <tr>
+                    <th>Heaviest Weight</th> 
+                </tr>
+                <?php
+                $stid = workoutDB::getInstance()->get_largest_weight_by_athlete_id($athleteID);
+                while ($row = oci_fetch_array($stid)) {
+                    echo "<tr><td>" . htmlentities($row["LARGE"]) . "</td></tr>\n";
+                }
+                oci_free_statement($stid)
+                ?>
+            </table>
+            <br />
+        </div>
+    </div>
     </body>
 </html>

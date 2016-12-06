@@ -26,13 +26,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <title></title>
     </head>
     <body>
+        <div style="text-align:center;">
         <img src="images/runner.jpg" title="runner picture" alt="Picture of a Runner" />
         <h1>Workout Tracker!</h1>
-        <h2>Please log in</h2>
+        <h3>Show workout list for: </h3>
          <form name="workout-tracker" method="GET" action="workout-tracker.php">
-            Show workout list of: <input type="text" name="user" value="" />
+            <input type="text" name="user" value="" />
             <input type="submit" value="Go" /> 
         </form> 
+        <h3>Or login!</h3>
         <form name="logon" action="index.php" method="POST" >
             Username: <input type="text" name="user">
             Password:  <input type="password" name="userpassword">
@@ -43,7 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
             ?>
             <input type="submit" value="Edit My workouts">
+            <br />
             <br>Not a member? <a href="createNewAthlete.php">Create an account!</a>
         </form>
+        </div>
     </body>
 </html>
